@@ -4,13 +4,13 @@ scripts
 """
 
 import asyncio
-from bleak import discover
+from bleak import BleakScanner
 
 
 async def run():
-    devices = await discover()
-    for d in devices:
-        print(d)
+    devices = await BleakScanner.discover(timeout=35,return_adv=True)
+    for k, v in devices.items():
+        print(k, v)
 
 
 if __name__ == "__main__":
